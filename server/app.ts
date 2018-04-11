@@ -4,8 +4,13 @@ import * as express from 'express';
 import * as morgan from 'morgan';
 import * as mongoose from 'mongoose';
 import * as path from 'path';
+import * as compression from 'compression';
+import * as passport from 'passport';
+import * as http from 'http';
+import * as socketIo from 'socket.io';
 
 import setRoutes from './routes';
+require('./services/passport');
 
 const app = express();
 dotenv.load({ path: '.env' });
@@ -14,6 +19,9 @@ app.set('port', (process.env.PORT || 3000));
 app.use('/', express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(compression());
+app.use(passport.initialize());
+app.use(passport.session());
 
 let mongodbURI;
 if (process.env.NODE_ENV === 'test') {
@@ -46,5 +54,6 @@ mongodb
   .catch((err) => {
     console.error(err);
 });
+
 
 export { app };

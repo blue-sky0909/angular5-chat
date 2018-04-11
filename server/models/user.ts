@@ -1,42 +1,39 @@
 import * as bcrypt from 'bcryptjs';
 import * as mongoose from 'mongoose';
+import * as jwt from 'jsonwebtoken';
 
 const userSchema = new mongoose.Schema({
-  username: String,
-  email: { type: String, unique: true, lowercase: true, trim: true },
-  password: String,
-  role: String
+    email: { type: 'String', required: true },
+    username: { type: 'String', required: true },
+    password: { type: 'String', required: true }
+},
+{
+    timestamps: {
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
+    }
 });
 
-// Before saving the user, hash the password
-userSchema.pre('save', function(next) {
-  const user = this;
-  user.role = 'user';
-  if (!user.isModified('password')) { return next(); }
-  bcrypt.genSalt(10, function(err, salt) {
-    if (err) { return next(err); }
-    bcrypt.hash(user.password, salt, function(error, hash) {
-      if (error) { return next(error); }
-      user.password = hash;
-      next();
-    });
-  });
-});
-
-userSchema.methods.comparePassword = function(candidatePassword, callback) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    if (err) { return callback(err); }
-    callback(null, isMatch);
-  });
+userSchema.methods.setPassword = function(password) {
+    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
 };
 
-// Omit the password when returning a user
-userSchema.set('toJSON', {
-  transform: function(doc, ret, options) {
-    delete ret.password;
-    return ret;
-  }
-});
+userSchema.methods.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+};
+
+userSchema.methods.generateJwt = function() {
+    const expiry = new Date();
+    expiry.setDate(expiry.getDate() + 7);
+    const time: number = expiry.getTime() / 1000;
+    const timestamp = time;
+    return jwt.sign({
+        _id: this._id,
+        email: this.email,
+        name: this.name,
+        exp: timestamp,
+    }, "MY_SECRET");
+};
 
 const User = mongoose.model('User', userSchema);
 
