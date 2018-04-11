@@ -16,7 +16,7 @@ import { User } from '../../shared/models/user.model';
 
 export class AdminComponent implements OnInit {
 
-  title = 'Rgistered Users';
+  title = 'Registered Users';
   users: User[] = [];
   isLoading = true;
   displayedColumns = ['username', 'email', 'role', 'action'];

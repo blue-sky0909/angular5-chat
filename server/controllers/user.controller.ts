@@ -1,7 +1,11 @@
 import * as passport from 'passport';
+import * as dotenv from 'dotenv';
+import * as jwt from 'jsonwebtoken';
+import BaseCtrl from './base.controller';
 import User from '../models/user';
 
-export default class UserCtrl {
+export default class UserCtrl extends BaseCtrl {
+    model = User;
     signIn = (req, res) => {
         passport.authenticate('local', function(err, user, info) {
             if (err) {
@@ -9,11 +13,8 @@ export default class UserCtrl {
             }
 
             if(user){
-                return res.status(200).send({
-                    token: user.generateJwt(),
-                    success: true,
-                    user: user
-                })
+                const token = jwt.sign({ user: user }, process.env.SECRET_TOKEN); // , { expiresIn: 10 } seconds
+                res.status(200).json({ token: token });
             } else {
                 res.status(401).send(info);
             }
@@ -23,8 +24,7 @@ export default class UserCtrl {
     signUp = (req, res) => {
         User.findOne({email: req.body.email}, function(error, user) {
             if (user){
-                res.send({
-                    status: 500,
+                res.status(500).send({                    
                     success: false,
                     message: "This email already exists",
                 })
@@ -36,17 +36,14 @@ export default class UserCtrl {
 
                 user.save(function(err, result) {
                     if(err) {
-                        res.send({
-                            status: 500,
+                        res.status(500).send({
                             success: false,
                             error: err,
                         })
                     } else {
-                        res.send({
-                            status: 200,
+                        res.status(200).send({
                             success: true,
-                            user: result,
-                            token: user.generateJwt(),
+                            user: result
                         })
                     }                
                 })
