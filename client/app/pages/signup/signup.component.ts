@@ -33,7 +33,10 @@ export class SignupComponent implements OnInit {
     Validators.required,
     Validators.minLength(6)
   ]);
-
+  confirmPassword = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6)
+  ]);
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -45,7 +48,8 @@ export class SignupComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       username: this.username,
       email: this.email,
-      password: this.password
+      password: this.password,
+      confirmPassword: this.confirmPassword
     });
   }
 

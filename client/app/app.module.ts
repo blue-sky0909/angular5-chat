@@ -21,6 +21,8 @@ import { AuthService } from './services/auth.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
 
+import { EqualValidator } from './directives/equal-validator.directive';  // import validator
+
 const PAGES = [
   HomeComponent,
   SignupComponent,
@@ -34,7 +36,8 @@ const PAGES = [
 @NgModule({
   declarations: [
     AppComponent,
-    ...PAGES
+    ...PAGES,
+    EqualValidator
   ],
   imports: [
     RoutingModule,

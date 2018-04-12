@@ -1,0 +1,24 @@
+@import '../../variables';
+.page-header {
+    margin: 30px;
+    font-size: $font-large;
+    text-align: center;
+    font-weight: bold;
+    color: $primaryCol;
+}
+
+.prefix {
+    color: $grayCol;
+    margin: 0 5px;
+}
+
+.form-wrap {
+    margin-top: 50px;
+    text-align: center;
+    .input-wrap {
+        margin: 20px 0;
+    }
+    .mat-form-field {
+        width: 100%;
+    }
+}
