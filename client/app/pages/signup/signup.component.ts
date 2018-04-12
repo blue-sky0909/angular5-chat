@@ -35,7 +35,6 @@ export class SignupComponent implements OnInit {
   ]);
   confirmPassword = new FormControl('', [
     Validators.required,
-    Validators.minLength(6)
   ]);
   constructor(
     private formBuilder: FormBuilder,
