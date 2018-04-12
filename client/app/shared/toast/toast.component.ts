@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
 
 @Component({
@@ -7,6 +7,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material';
   styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent {
+  @Input() message: string = '';
 
   constructor(public snackBar: MatSnackBar) { }
 
