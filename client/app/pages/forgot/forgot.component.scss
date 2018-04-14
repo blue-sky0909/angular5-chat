@@ -1,0 +1,43 @@
+@import '../../../variables';
+
+.page-header {
+    margin: 30px;
+    font-size: $font-large;
+    text-align: center;
+    font-weight: bold;
+    color: $primaryCol;
+}
+.prefix {
+    color: $grayCol;
+    margin: 0 5px;
+}
+
+.form-wrap {
+    text-align: center;
+    .input-wrap {
+        margin: 20px 0;
+    }
+    .mat-form-field {
+        width: 100%;
+    }
+}
+
+ul#strengthBar {
+    display: inline;
+    list-style: none;
+    margin: 0 0 0 15px;
+    padding: 0;
+    vertical-align: 2px;
+  }
+  ul#strengthBar .point {
+    background: #DDD;
+    border-radius: 2px;
+    display: inline-block;
+    height: 5px;
+    margin-right: 1px;
+    width: 20px;
+  }
+  
+  ul#strengthBar .point:last-child {
+    margin: 0;
+  }

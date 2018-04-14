@@ -17,6 +17,11 @@ export class UserService {
     return this.http.post<any>('/api/auth/login', credentials);
   }
 
+  resetPassword(data): Observable<User> {
+    console.log(data)
+    return this.http.post<User>('http://192.168.0.27:8080/changepwd', data);
+  }
+
   getUsers(): Observable<User[]> {
     return this.http.get<User[]>('/api/users');
   }

@@ -1,0 +1,68 @@
+<app-toast [message]="toast.message"></app-toast>
+
+<div class="container">
+  <app-page-header [title]="title"></app-page-header>
+  <div class="row">
+    <div class="col-md-4 col-sm-12 col-centered">
+      <div class="form-wrap">
+        <form [formGroup]="resetForm" (ngSubmit)="resetPassword()">
+          <div class="input-wrap">
+            <mat-form-field>
+              <span matPrefix>
+                <i class="prefix fa fa-key"></i>
+              </span>
+              <input matInput type="password" name="oldPass" [formControl]="oldPass" placeholder="oldPass">
+              <mat-error *ngIf="oldPass.hasError('required')">
+                oldPass is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="input-wrap">
+            <mat-form-field>
+              <span matPrefix>
+                <i class="prefix fa fa-key"></i>
+              </span>
+              <input matInput type="password" name="password" [formControl]="password" placeholder="Password" >
+              <mat-error *ngIf="password.hasError('minlength')">
+                Password must be at least 6 characters long
+              </mat-error>
+              <mat-error *ngIf="password.hasError('required')">
+                Password is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="input-wrap">
+            <mat-form-field>
+              <span matPrefix>
+                <i class="prefix fa fa-key"></i>
+              </span>
+              <input matInput type="password" name="confirmPassword" [formControl]="confirmPassword" placeholder="Confirm Password" validateEqual="password">
+              <mat-error *ngIf="confirmPassword.hasError('minlength')">
+                confirmPassword must be at least 6 characters long
+              </mat-error>
+              <mat-error *ngIf="confirmPassword.hasError('required')">
+                confirmPassword is
+                <strong>required</strong>
+              </mat-error>
+              <mat-error *ngIf="!confirmPassword.validateEqual">
+                confirmPassword mismatch
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="input-wrap">
+            <ng2-password-strength-bar 
+              [passwordToCheck]="resetForm.value.password"
+              [barColors]="myColors"
+              [barLabel]="barLabel">
+            </ng2-password-strength-bar>
+          </div>
+          <button mat-raised-button type="submit" [disabled]="!resetForm.valid" color="accent">
+            <i class="fa fa-paper-plane"></i> Reset Password
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

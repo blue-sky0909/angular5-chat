@@ -1,5 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 /** Modules */
 import { MaterialModule } from './material/material.module';
 import { RoutingModule } from './routing.module';
@@ -10,10 +11,11 @@ import {
   HomeComponent,
   SignupComponent,
   LoginComponent,
+  ForgotComponent,
   LogoutComponent,
   AccountComponent,
   AdminComponent,
-  NotFoundComponent
+  NotFoundComponent  
 } from './pages';
 /** Services */
 import { UserService } from './services/user.service';
@@ -27,10 +29,11 @@ const PAGES = [
   HomeComponent,
   SignupComponent,
   LoginComponent,
+  ForgotComponent,
   LogoutComponent,
   AccountComponent,
   AdminComponent,
-  NotFoundComponent
+  NotFoundComponent  
 ];
 
 @NgModule({
@@ -43,6 +46,7 @@ const PAGES = [
     RoutingModule,
     SharedModule,
     BrowserAnimationsModule,
+    PasswordStrengthBarModule,
     MaterialModule
   ],
   providers: [
