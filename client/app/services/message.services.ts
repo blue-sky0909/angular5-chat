@@ -13,6 +13,12 @@ export class MessageService {
     this.socket.on("fromMessage", data => {
       return data
     });
+    const message = {
+      from_user: JSON.parse(localStorage.getItem('user'))._id,
+      content: data.message,
+      created_at: new Date()
+    }
+    this.socket.send(message);
     // return this.http.post<any>('/api/message', data);
   }
 

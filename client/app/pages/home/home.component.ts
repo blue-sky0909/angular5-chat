@@ -29,6 +29,14 @@ export class HomeComponent {
       res => console.log(res),
       error => console.log(error)
     )
+
+    // this.socket.on('new-message', function (data) {
+    //   if(data.message.room === JSON.parse(localStorage.getItem("user")).room) {
+    //     this.chats.push(data.message);
+    //     this.msgData = { room: user.room, nickname: user.nickname, message: '' }
+    //     this.scrollToBottom();
+    //   }
+    // }.bind(this));
   }
 
   ngAfterViewChecked() {
