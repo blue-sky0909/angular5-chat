@@ -14,8 +14,22 @@
           </button>
         </div>
       </div>
-      <h4 *ngIf="auth.isAdmin" class="user-role" >User is Admin</h4>
-      <h4 *ngIf="!auth.isAdmin && auth.loggedIn" class="user-role" >User is NOT Admin</h4>
+      <div class="form-wrap">           
+        <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+          <div class="input-wrap">
+            <mat-form-field>              
+              <input matInput type="text" name="mesage" [formControl]="mesage" placeholder="mesage">
+              <mat-error *ngIf="mesage.hasError('required')">
+                Mesage is
+                <strong>required</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <button mat-raised-button type="submit" color="primary">
+            <i class="fa fa-paper-plane"></i> Send
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

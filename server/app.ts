@@ -11,7 +11,7 @@ import * as socketIo from 'socket.io';
 
 import setRoutes from './routes';
 require('./services/passport');
-
+const messageManage = require('./services/messageManage');
 const app = express();
 dotenv.load({ path: '.env' });
 app.set('port', (process.env.PORT || 3000));
@@ -31,6 +31,24 @@ if (process.env.NODE_ENV === 'test') {
   app.use(morgan('dev'));
 }
 
+const server = http.createServer(app); // create socket server
+const io = socketIo(server);
+
+/* ================= socket section ============= */
+
+io.on("connection", socket => {
+  console.log("New client connected");  
+  socket.on("message", (data) => {
+    messageManage.saveMessage(data);
+    socket.broadcast.emit('fromMessage', data);
+    socket.emit('fromMessage', data);
+  });
+ 
+  socket.on("disconnect", () => console.log("Client disconnected"));
+});
+
+/* ================= socket section ============= */
+
 mongoose.Promise = global.Promise;
 const mongodb = mongoose.connect(mongodbURI, { useMongoClient: true });
 
@@ -48,6 +66,13 @@ mongodb
       app.listen(app.get('port'), () => {
         console.log('Server listening on port ' + app.get('port'));
       });
+
+      // start app
+      // server.listen(serverConfig.port, (error) => {
+      //   if (!error) {
+      //     console.log(`MERN is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
+      //   }
+      // });
     }
 
   })
