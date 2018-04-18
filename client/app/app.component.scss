@@ -21,3 +21,8 @@
         font-size: $font-regular;
     }
 }
+.main-page {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}

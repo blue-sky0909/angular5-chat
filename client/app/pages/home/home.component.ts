@@ -36,7 +36,9 @@ export class HomeComponent {
       message: this.message
     });
     this.messageService.getMessages().subscribe(
-      res => this.messages = res.messages,
+      res => {this.messages = res.messages
+        console.log(this.messages)
+      },
       error => console.log(error)
     )
     console.log("length======>", this.messages.length)
@@ -47,7 +49,7 @@ export class HomeComponent {
   }
 
   ngAfterViewChecked() {
-  //  this.scrollToBottom();
+    this.scrollToBottom();
     this.cdr.detectChanges();
   }
 

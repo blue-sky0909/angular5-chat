@@ -15,6 +15,7 @@ import {
   LogoutComponent,
   AccountComponent,
   AdminComponent,
+  SideBarComponent,
   NotFoundComponent  
 } from './pages';
 /** Services */
@@ -35,6 +36,7 @@ const PAGES = [
   LogoutComponent,
   AccountComponent,
   AdminComponent,
+  SideBarComponent,
   NotFoundComponent  
 ];
 

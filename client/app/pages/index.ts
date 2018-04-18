@@ -5,4 +5,5 @@ export { ForgotComponent } from './forgot/forgot.component';
 export { LogoutComponent } from './logout/logout.component';
 export { AccountComponent } from './account/account.component';
 export { AdminComponent } from './admin/admin.component';
+export { SideBarComponent } from './sidebar/sidebar.component';
 export { NotFoundComponent } from './not-found/not-found.component';

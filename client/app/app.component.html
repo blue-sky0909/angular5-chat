@@ -20,8 +20,10 @@
         <i class="fa fa-sign-out"></i>
         <span>Logout</span>
       </a>
-    </mat-menu>
+    </mat-menu>    
   </div>
 </mat-toolbar>
-
-<router-outlet></router-outlet>
+<div class="main-page">
+  <app-side-bar *ngIf="auth.loggedIn"></app-side-bar>
+  <router-outlet></router-outlet>
+</div>
