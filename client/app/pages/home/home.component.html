@@ -14,7 +14,7 @@
           </button>
         </div>
       </div>
-      <div class="form-wrap">           
+      <div *ngIf="auth.loggedIn" class="form-wrap send-message">           
         <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
           <div class="input-wrap">
             <mat-form-field>              
@@ -24,10 +24,11 @@
                 <strong>required</strong>
               </mat-error>
             </mat-form-field>
+            <button mat-raised-button type="submit" [disabled]="!messageForm.valid" color="primary">
+              <i class="fa fa-paper-plane"></i> Send
+            </button>
           </div>
-          <button mat-raised-button type="submit" color="primary">
-            <i class="fa fa-paper-plane"></i> Send
-          </button>
+          
         </form>
       </div>
     </div>

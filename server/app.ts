@@ -39,7 +39,7 @@ const io = socketIo(server);
 io.on("connection", socket => {
   console.log("New client connected");  
   socket.on("message", (data) => {
-    messageManage.saveMessage(data);
+    // messageManage.saveMessage(data);
     socket.broadcast.emit('fromMessage', data);
     socket.emit('fromMessage', data);
   });
@@ -63,16 +63,16 @@ mongodb
     });
 
     if (!module.parent) {
-      app.listen(app.get('port'), () => {
-        console.log('Server listening on port ' + app.get('port'));
-      });
+      // app.listen(app.get('port'), () => {
+      //   console.log('Server listening on port ' + app.get('port'));
+      // });
 
       // start app
-      // server.listen(serverConfig.port, (error) => {
-      //   if (!error) {
-      //     console.log(`MERN is running on port: ${serverConfig.port}! Build something amazing!`); // eslint-disable-line
-      //   }
-      // });
+      server.listen(app.get('port'), (error) => {
+        if (!error) {
+          console.log('Server listening on port ' + app.get('port')); // eslint-disable-line
+        }
+      });
     }
 
   })

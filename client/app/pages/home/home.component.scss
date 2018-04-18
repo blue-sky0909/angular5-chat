@@ -10,3 +10,9 @@
     text-align: center;
     margin: 30px;
 }
+.send-message {
+	width: 100%;
+	mat-form-field {
+		width: 80%;
+	}
+}

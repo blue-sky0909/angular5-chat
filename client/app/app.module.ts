@@ -22,6 +22,8 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { AuthGuardAdmin } from './services/auth-guard-admin.service';
+import { MessageService } from './services/message.services';
+
 
 import { EqualValidator } from './directives/equal-validator.directive';  // import validator
 
@@ -53,7 +55,8 @@ const PAGES = [
     AuthService,
     AuthGuardLogin,
     AuthGuardAdmin,
-    UserService
+    UserService,
+    MessageService
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
