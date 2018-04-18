@@ -11,7 +11,6 @@ import * as socketIo from 'socket.io';
 
 import setRoutes from './routes';
 require('./services/passport');
-const messageManage = require('./services/messageManage');
 const app = express();
 dotenv.load({ path: '.env' });
 app.set('port', (process.env.PORT || 3000));
@@ -38,10 +37,9 @@ const io = socketIo(server);
 
 io.on("connection", socket => {
   console.log("New client connected");  
-  socket.on("message", (data) => {
-    // messageManage.saveMessage(data);
-    socket.broadcast.emit('fromMessage', data);
-    socket.emit('fromMessage', data);
+  socket.on("save-message", (data) => {
+    socket.broadcast.emit('new-message', data);
+    socket.emit('new-message', data);
   });
  
   socket.on("disconnect", () => console.log("Client disconnected"));

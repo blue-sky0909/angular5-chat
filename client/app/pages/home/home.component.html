@@ -14,21 +14,39 @@
           </button>
         </div>
       </div>
-      <div *ngIf="auth.loggedIn" class="form-wrap send-message">           
+      <div *ngIf="auth.loggedIn" class="form-wrap send-message">
+        <div #scrollMe class="panel-body message-history">
+          <mat-list role="list">
+            <mat-list-item role="listitem" *ngFor="let message of messages">
+              <div class="message-date">{{showDateTime(message)}}</div>
+              <div class="clearfix" *ngIf="message.from_user == auth.currentUser._id; else leftchat">                
+                <div class="right chat-body">
+                  <p>{{message.content}}</p> <small>{{message.created_at | date: 'shortTime'}}</small>
+                </div>
+              </div>
+              <ng-template #leftchat>
+                <div class="clearfix">                  
+                  <div class="left chat-body">
+                    <div class="chat-img">
+                      <img mat-card-image src="http://placehold.it/50/FA6F57/fff&text=U" alt="User Avatar" class="img-circle" />
+                      <p>{{message.content}}</p>
+                    </div>
+                    <small>{{message.created_at | date: 'shortTime'}}</small>
+                  </div>
+                </div>
+              </ng-template>
+            </mat-list-item>
+          </mat-list>
+        </div>
         <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
           <div class="input-wrap">
             <mat-form-field>              
-              <input matInput type="text" name="mesage" [formControl]="mesage" placeholder="mesage">
-              <mat-error *ngIf="mesage.hasError('required')">
-                Mesage is
-                <strong>required</strong>
-              </mat-error>
+              <input matInput type="text" name="message" [formControl]="message" placeholder="" [(ngModel)]="msg">
             </mat-form-field>
             <button mat-raised-button type="submit" [disabled]="!messageForm.valid" color="primary">
               <i class="fa fa-paper-plane"></i> Send
             </button>
-          </div>
-          
+          </div>          
         </form>
       </div>
     </div>

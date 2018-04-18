@@ -53,7 +53,7 @@ export class ForgotComponent implements OnInit {
   }
 
   resetPassword() {
-    console.log(this.resetForm.value)
+
     const params = {
       oldpwd: this.resetForm.value.oldPass,
       newpwd: this.resetForm.value.password

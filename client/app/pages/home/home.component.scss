@@ -10,9 +10,83 @@
     text-align: center;
     margin: 30px;
 }
+.mat-list .mat-list-item .mat-list-item-content {
+    display: block !important;
+}
+
 .send-message {
-	width: 100%;
-	mat-form-field {
-		width: 80%;
-	}
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: calc(100vh - 130px);
+    width: 100%;
+    .message-history {
+        height: 100%;
+        overflow-y: auto;
+        .mat-list-item {
+            margin-bottom: 10px;
+            .mat-list-item-content {
+                display: block !important;
+            }
+            // .message-date {
+            //     width: 100%;
+            //     text-align: center;
+            //     margin: 0 auto;
+            //     position: relative;
+            //     clear: both;
+            //     /* padding: 15px; */
+            //     padding-top: 15px;
+            //     padding-bottom: 15px;
+            // }
+            .clearfix {
+                width: 100%;
+                position: relative;
+                .right.chat-body {
+                    width: auto;
+                    float: right;
+                    display: flex;
+                    align-items: center;
+                    clear: both;
+                    p {
+                        padding: 10px;
+                        background: #77b4f1;
+                        border-radius: 5px;
+                        margin-right: 30px;
+                    }
+                    small {
+                        font-size: 12px;
+                    }
+                }
+                .left.chat-body {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    clear: both;
+                    .chat-img {
+                        display: flex;
+                        .img-circle {
+                            width: 50px;
+                            height: 50px;
+                            border-radius: 25px;
+                        }
+                        p {
+                            padding: 10px;
+                            background: #d4d9dd;
+                            border-radius: 5px;
+                            margin-left: 30px;
+                            display: flex;
+                            align-items: center;
+                        }
+                    }        
+                    small {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+    mat-form-field {
+        width: 80%;
+    }
+    
 }

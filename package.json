@@ -1,9 +1,9 @@
 {
-  "name": "MEAN-stack-authentication",
+  "name": "slack-chat",
   "version": "1.0.0",
   "license": "MIT",
   "author": "Leonardo Maglio  @leota",
-  "description": "MEAN stack authentication boilerplate with Angular 5 and Angular Material.",
+  "description": "Chat app with Angular 5 and Angular Material.",
   "angular-cli": {},
   "engines": {
     "node": "6.11.4",
@@ -36,6 +36,7 @@
     "@angular/platform-browser": "^5.0.3",
     "@angular/platform-browser-dynamic": "^5.0.3",
     "@angular/router": "^5.0.3",
+    "@types/moment": "^2.13.0",
     "angular2-jwt": "^0.2.3",
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.4.3",

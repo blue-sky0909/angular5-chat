@@ -24,7 +24,7 @@ export default function setRoutes(app) {
   router.route('/user/:id').put(userCtrl.update);
   router.route('/user/:id').delete(userCtrl.delete);
 
-  // router.route('/message').post(messageCtrl.createMessages);
+  router.route('/message').post(messageCtrl.createMessages);
   router.route('/message').get(messageCtrl.getMessages);
 
   router.route('/workspace/create').post(workspaceCtrl.create);
