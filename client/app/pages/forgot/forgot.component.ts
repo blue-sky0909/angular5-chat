@@ -5,8 +5,6 @@ import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { UserService } from '../../services/user.service';
 import { ToastComponent } from '../../shared/toast/toast.component';
 
-const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
 @Component({
   selector: 'app-forgot',
   templateUrl: './forgot.component.html',
