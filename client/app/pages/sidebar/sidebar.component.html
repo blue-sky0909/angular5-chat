@@ -1,8 +1,10 @@
 <div *ngIf="!isLoading" class="side-bar-page">
   <div class="side-bar">
     <mat-list>
-      <mat-list-item *ngFor="let user of users">
-        <div class="user-info" (click)="selectUser(user)">{{user.username}}</div> 
+      <mat-list-item *ngFor="let user of users" [ngClass]="{'active': selectedUser && selectedUser._id==user._id}">
+        <div class="user-info" (click)="selectUser(user)">
+          <img src="http://placehold.it/50/FA6F57/fff&text=U" alt="User Avatar" class="img-circle" />{{user.username}}
+        </div> 
       </mat-list-item>
     </mat-list>
   </div>

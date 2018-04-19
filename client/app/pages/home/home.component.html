@@ -18,7 +18,7 @@
         <div #scrollMe class="panel-body message-history">
           <mat-list role="list">
             <mat-list-item role="listitem" *ngFor="let message of messages">
-              <div class="message-date">{{showDateTime(message)}}</div>
+             <!--  <div class="message-date">{{showDateTime(message)}}</div> -->
               <div class="clearfix" *ngIf="message.from_user == auth.currentUser._id; else leftchat">                
                 <div class="right chat-body">
                   <p>{{message.content}}</p> <small>{{message.created_at | date: 'shortTime'}}</small>
@@ -28,7 +28,7 @@
                 <div class="clearfix">                  
                   <div class="left chat-body">
                     <div class="chat-img">
-                      <img mat-card-image src="http://placehold.it/50/FA6F57/fff&text=U" alt="User Avatar" class="img-circle" />
+                      <img src="http://placehold.it/50/FA6F57/fff&text=U" alt="User Avatar" class="img-circle" />
                       <p>{{message.content}}</p>
                     </div>
                     <small>{{message.created_at | date: 'shortTime'}}</small>

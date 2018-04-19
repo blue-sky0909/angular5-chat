@@ -16,11 +16,9 @@ import { User } from '../../shared/models/user.model';
 
 export class SideBarComponent implements OnInit {
 
-  title = 'Registered Users';
   users: User[] = [];
   isLoading = true;
-  displayedColumns = ['username', 'email', 'role', 'action'];
-  dataSource: any;
+  public selectedUser: any;
 
   constructor(
     public auth: AuthService,
@@ -44,6 +42,7 @@ export class SideBarComponent implements OnInit {
 
   selectUser(user) {
     console.log(user)
+    this.selectedUser = user;
   }
 }
 

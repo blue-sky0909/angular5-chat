@@ -36,16 +36,11 @@ export class HomeComponent {
       message: this.message
     });
     this.messageService.getMessages().subscribe(
-      res => {this.messages = res.messages
-        console.log(this.messages)
-      },
+      res => this.messages = res.messages,
       error => console.log(error)
     )
-    console.log("length======>", this.messages.length)
-    this.socket.on('new-message', function (data) {
-      console.log("data==========>", data)
-      this.messages.push(data);
-    });
+    const that = this;
+    this.socket.on('new-message', data => that.messages.push(data));
   }
 
   ngAfterViewChecked() {
@@ -58,7 +53,6 @@ export class HomeComponent {
   }
 
   sendMessage() {
-    console.log("=====send===")
     if(this.messageForm.value.message ) {
       const message = {
         from_user: this.auth.currentUser._id,
@@ -81,9 +75,8 @@ export class HomeComponent {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
     } catch(err) { }
   }
-  public count: number = 1
+
   showDateTime(message) {
-    console.log(this.count++)
     const date1 = moment(message.created_at).format('YYYY/MM/DD');
     let dateString = null;
     if (date1 != this.tempDate) {

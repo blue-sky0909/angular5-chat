@@ -1,5 +1,7 @@
 @import '../../../variables';
-
+:host {
+    width: 100%;
+}
 .page-header {
     margin: 30px;
     font-size: $font-large;
