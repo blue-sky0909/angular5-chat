@@ -39,8 +39,11 @@
           </mat-list>
         </div>
         <form [formGroup]="messageForm" (ngSubmit)="sendMessage()">
+          <div *ngIf="typingUser && typingUser.flag == true">
+            <div class="typing-user">{{typingUser.user.username}} is typing... <i class="fa fa-pencil"></i></div>
+          </div>
           <mat-form-field>              
-            <input matInput type="text" name="message" [formControl]="message" placeholder="" [(ngModel)]="msg">
+            <input matInput type="text" name="message" [formControl]="message" placeholder="" [(ngModel)]="msg" (keyup)="onKey($event)">
           </mat-form-field>
           <button mat-raised-button type="submit" [disabled]="!messageForm.valid" color="primary">
             <i class="fa fa-paper-plane"></i> Send

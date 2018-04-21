@@ -41,6 +41,11 @@ io.on("connection", socket => {
     socket.broadcast.emit('new-message', data);
     socket.emit('new-message', data);
   });
+
+  socket.on("insert-value", (data) => {
+    console.log(data)
+    socket.broadcast.emit('check-user', data);
+  });
  
   socket.on("disconnect", () => console.log("Client disconnected"));
 });

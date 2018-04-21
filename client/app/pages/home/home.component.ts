@@ -23,6 +23,7 @@ export class HomeComponent {
   public socket: any = socketIOClient(this.endpoint);
   public msg: string = "";
   public tempDate: any = null;
+  public typingUser: any;
 
   constructor(
     public auth: AuthService,
@@ -41,6 +42,10 @@ export class HomeComponent {
     )
     const that = this;
     this.socket.on('new-message', data => that.messages.push(data));
+    this.socket.on('check-user', data => {
+      console.log(data)
+      this.typingUser = data;
+    });
   }
 
   ngAfterViewChecked() {
@@ -84,6 +89,23 @@ export class HomeComponent {
     }
     this.tempDate = date1;
     return dateString;
+  }
+
+  onKey(e) {
+    const data = {
+      user: this.auth.currentUser,
+      flag: true
+    }
+
+    this.socket.emit('insert-value', data);
+    const that = this;
+    setTimeout(function() {
+      const data = {
+        user: that.auth.currentUser,
+        flag: false
+      }
+      that.socket.emit('insert-value', data);
+    }, 1000)
   }
 
 }
